@@ -1,6 +1,6 @@
 import { BookserviceService } from './../../services/bookservice.service';
 import { Component, OnInit } from '@angular/core';
-
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class IndexComponent implements OnInit {
   googlebooks: any;
   newgooglebooks: any;
-  constructor(public bookservices: BookserviceService) {
+  constructor(public bookservices: BookserviceService, private route: Router) {
     this.googlebooks = [];
   }
 
@@ -19,5 +19,9 @@ export class IndexComponent implements OnInit {
       this.newgooglebooks = res;
       console.log(this.googlebooks);
     });
+  }
+
+  goAddBook() {
+    this.route.navigate(['/add']);
   }
 }

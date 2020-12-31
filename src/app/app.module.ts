@@ -5,10 +5,17 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { IndexComponent } from './books/index/index.component';
 import { HttpClientModule } from '@angular/common/http';
-
+import { FormsModule } from '@angular/forms';
+import { AddBookComponent } from './books/add-book/add-book.component';
 @NgModule({
-  declarations: [AppComponent, IndexComponent],
-  imports: [BrowserModule, AppRoutingModule, NgbModule, HttpClientModule],
+  declarations: [AppComponent, IndexComponent, AddBookComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgbModule,
+    HttpClientModule,
+    FormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
