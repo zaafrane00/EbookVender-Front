@@ -9,7 +9,7 @@
   flex: 1;
 }
 
-.btn {
+.btn btn-primary {
   background-color: DodgerBlue;
   border: none;
   color: white;
@@ -17,6 +17,6 @@
   font-size: 16px;
   cursor: pointer;
 }
-.btn:hover {
+.btn btn-primary:hover {
   background-color: RoyalBlue;
 }

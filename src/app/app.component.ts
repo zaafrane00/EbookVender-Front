@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { BookserviceService } from './services/bookservice.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'BookVender-Front';
+  title = 'E-BOOKSTORE';
+  chart: Observable;
+  numberofcarts: any;
+
+  constructor(public bookservices: BookserviceService, private route: Router) {}
+
+  ngOnInit(): void {
+    this.getChart();
+  }
+
+  goChart() {
+    this.route.navigate(['/chart']);
+  }
+
+  getChart() {
+    this.chart = this.bookservices.getChart();
+    this.numberofcarts = this.chart.length;
+    console.log('qsfsfqs', this.numberofcarts);
+  }
 }

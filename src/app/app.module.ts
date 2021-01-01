@@ -7,8 +7,15 @@ import { IndexComponent } from './books/index/index.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AddBookComponent } from './books/add-book/add-book.component';
+import { ChartComponent } from './chart/chart.component';
+
 @NgModule({
-  declarations: [AppComponent, IndexComponent, AddBookComponent],
+  declarations: [
+    AppComponent,
+    IndexComponent,
+    AddBookComponent,
+    ChartComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

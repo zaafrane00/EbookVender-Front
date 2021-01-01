@@ -8,20 +8,56 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class IndexComponent implements OnInit {
   googlebooks: any;
-  newgooglebooks: any;
+  addedBooks: any;
+  // chart: any;
+  chart: Observable;
+  numberChart: number;
   constructor(public bookservices: BookserviceService, private route: Router) {
     this.googlebooks = [];
+    this.addedBooks = [];
+    // this.chart = [];
   }
 
   ngOnInit(): void {
+    //localStorage.setItem('chart', this.chart);
     this.bookservices.getListStudent().subscribe((res) => {
       this.googlebooks = res;
-      this.newgooglebooks = res;
       console.log(this.googlebooks);
     });
+    this.bookservices.getBookList().subscribe((res) => {
+      this.addedBooks = res;
+      console.log(this.addedBooks);
+    });
+    this.getChart();
   }
 
   goAddBook() {
     this.route.navigate(['/add']);
+  }
+
+  refresh() {
+    this.addedBooks = [];
+    this.bookservices.getBookList().subscribe((res) => {
+      this.addedBooks = res;
+    });
+    this.route.navigate(['']);
+    this.bookservices.getBookList().subscribe((res) => {
+      this.addedBooks = res;
+    });
+  }
+
+  deleteBook(id: BigInteger) {
+    this.bookservices.destroyBook(id);
+    this.refresh();
+  }
+
+  addToChart(book: any) {
+    this.bookservices.addtoChart(book);
+  }
+
+  getChart() {
+    this.chart = this.bookservices.getChart();
+    // console.log('hellsssssso', this.chart.length);
+    this.numberChart = this.chart.length;
   }
 }
