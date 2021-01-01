@@ -12,7 +12,9 @@ export class AddBookComponent implements OnInit {
   book: Book = new Book();
   constructor(public bookservices: BookserviceService, private route: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.conected();
+  }
 
   // tslint:disable-next-line: typedef
   addBook(): void {
@@ -20,6 +22,12 @@ export class AddBookComponent implements OnInit {
     this.bookservices.storeBook(this.book).subscribe((res) => {
       console.log(res);
       this.route.navigate(['/']);
+    });
+  }
+
+  conected() {
+    this.bookservices.getConnectedUser().subscribe((res) => {
+      console.log(res);
     });
   }
 }
